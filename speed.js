@@ -1,17 +1,30 @@
-function checkSpeed(speed) {
-    const speedLimit = 70;
-    const kmPerDemerit = 5;
-    if (speed <= speedLimit) {
-        console.log("Ok");
-    } else {
-        const demeritPoints = Math.floor((speed - speedLimit) / kmPerDemerit);
-        console.log("Demerit points: ${demeritPoints}");
+function speedDetector(speed) {  
+    const speedLimit = 70;  // Maximum allowed speed  
+    const demeritPointThreshold = 12;  // Points leading to license suspension  
+    const demeritPointPerUnit = 5;  // Points per 5 km/h over the limit  
+
+    // Check if speed is acceptable  
+    if (speed < speedLimit) {  
+        console.log("Ok");  
+    } else {  
+        // Calculate excess speed  
+        const overSpeed = speed - speedLimit;  
+
+        // Calculate demerit points  
+        const demeritPoints = Math.floor(overSpeed / demeritPointPerUnit);  
         
-        if (demeritPoints >= 12) {
-            console.log("License suspended");
-        }
-    }
-}
-checkSpeed(80)
-checkSpeed(60)
-checkSpeed(135)
+        // Display demerit points  
+        console.log("Points: " + demeritPoints);  
+
+        // Check if license should be suspended  
+        if (demeritPoints > demeritPointThreshold) {  
+            console.log("License suspended");  
+        }  
+    }  
+}  
+
+// Example calls  
+speedDetector(80);  // "Points: 2"  
+speedDetector(50);  //  "Ok"  
+speedDetector(130); // "Points: 12" and "and is point of license suspension"
+speedDetector(180) ; //  "points:22" license suspended

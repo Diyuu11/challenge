@@ -1,78 +1,133 @@
-function calculatePayee(grossSalary) {
-    let taxRate;
-    if (grossSalary <= 24000) {
-        taxRate = 0.1; // 10%
-    } else if (grossSalary <= 48000) {
-        taxRate = 0.25; // 25%
-    } else {
-        taxRate = 0.3; // 30%
+// To calculate PAYE tax using function 
+function calculatePAYE(grossSalary) {  
+    let tax = 0;  
+    const personalRelief = 2400; // Monthly personal relief  
+
+    // PAYE tax  
+    if (grossSalary <= 24000) {  
+        tax = grossSalary * 0.1; // 10% for income up to Ksh. 24,000  
+    } 
+    else if (grossSalary <= 32333) {  
+        tax = 24000 * 0.1 + (grossSalary - 24000) * 0.25; // 25% for next range  
     }
-    return grossSalary * taxRate;
-}
-
-function calculateNHIFDeduction(grossSalary) {
-    if (grossSalary <= 5999) {
-        return 150;
-    } else if (grossSalary <= 7999) {
-        return 300;
-    } else if (grossSalary <= 11999) {
-        return 400;
-    } else if (grossSalary <= 14999) {
-        return 500;
-    } else if (grossSalary <= 19999) {
-        return 600;
-    } else if (grossSalary <= 24999) {
-        return 750;
-    } else if (grossSalary <= 29999) {
-        return 850;
-    } else if (grossSalary <= 34999) {
-        return 900;
-    } else if (grossSalary <= 39999) {
-        return 950;
-    } else if (grossSalary <= 44999) {
-        return 1000;
-    } else if (grossSalary <= 49999) {
-        return 1100;
-    } else {
-        return 1200;
+     else if (grossSalary <= 500000) {  
+        tax = 24000 * 0.1 + 8333 * 0.25 + (grossSalary - 32333) * 0.3; // 30% for next range  
     }
-}
-
-function calculateNSSFDeduction(grossSalary) {
-    return grossSalary * 0.06; // Assuming 6% deduction
-}
-
-function calculateNetSalary(basicSalary, benefits) {
-    const grossSalary = basicSalary + benefits;
-    const payee = calculatePayee(grossSalary);
-    const nhifDeduction = calculateNHIFDeduction(grossSalary);
-    const nssfDeduction = calculateNSSFDeduction(grossSalary);
-    
-    const totalDeductions = payee + nhifDeduction + nssfDeduction;
-    const netSalary = grossSalary - totalDeductions;
-    
-    return { grossSalary, payee, nhifDeduction, nssfDeduction, netSalary };
-}
-
-// User Input and Output
-function main() {
-    const basicSalary = parseFloat(prompt("Enter Basic Salary: "));
-    const benefits = parseFloat(prompt("Enter Benefits: "));
-    
-    if (isNaN(basicSalary) || isNaN(benefits)) {
-        alert("Please enter valid numerical values for salary and benefits.");
-        return;
+     else if (grossSalary <= 800000) {  
+        tax = 24000 * 0.1 + 8333 * 0.25 + 166667 * 0.3 + (grossSalary - 500000) * 0.325; // 32.5%  
     }
-    
-    const { grossSalary, payee, nhifDeduction, nssfDeduction, netSalary } = calculateNetSalary(basicSalary, benefits);
-    
-    alert(`Results:
-    Gross Salary: Ksh ${grossSalary.toFixed(2)}
-    Payee (Tax): Ksh ${payee.toFixed(2)}
-    NHIF Deduction: Ksh ${nhifDeduction.toFixed(2)}
-    NSSF Deduction: Ksh ${nssfDeduction.toFixed(2)}
-    Net Salary: Ksh ${netSalary.toFixed(2)}`);
-}
+     else {  
+        tax = 24000 * 0.1 + 8333 * 0.25 + 166667 * 0.3 + 300000 * 0.325 + (grossSalary - 800000) * 0.35; // 35%  
+    }  
 
-// Start the program
-main();
+    // Subtract personal relief  
+    return Math.max(0, tax - personalRelief);  
+}  
+
+// Function to calculate NHIF deduction  
+function calculateNHIF(grossSalary) {  
+    let nhif = 0;  
+
+    // NHIF rates  
+    if (grossSalary <= 5999) {  
+        nhif = 150;  
+    } 
+    else if (grossSalary <= 7999) {  
+        nhif = 300;  
+    }
+     else if (grossSalary <= 11999) {  
+        nhif = 400;  
+    }
+     else if (grossSalary <= 14999) {  
+        nhif = 500;  
+    }
+     else if (grossSalary <= 19999) {  
+        nhif = 600;  
+    }
+     else if (grossSalary <= 24999) {  
+        nhif = 750;  
+    }
+     else if (grossSalary <= 29999) {  
+        nhif = 850;  
+    }
+     else if (grossSalary <= 34999) {  
+        nhif = 900;  
+    }
+     else if (grossSalary <= 39999) {  
+        nhif = 950;  
+    }
+     else if (grossSalary <= 44999) {  
+        nhif = 1000;  
+    } 
+    else if (grossSalary <= 49999) {  
+        nhif = 1100;  
+    } 
+    else if (grossSalary <= 59999) {  
+        nhif = 1200;  
+    } 
+    else if (grossSalary <= 69999) {  
+        nhif = 1300;  
+    } 
+    else if (grossSalary <= 79999) {  
+        nhif = 1400;  
+    } 
+    else if (grossSalary <= 89999) {  
+        nhif = 1500;  
+    }
+     else if (grossSalary <= 99999) {  
+        nhif = 1600;  
+    }
+     else {  
+        nhif = 1700;  
+    }  
+
+    return nhif;  
+}  
+
+// To calculate NSSF deduction using function  
+function calculateNSSF(grossSalary) {  
+    const tier1Limit = 7000; // Tier 1 limit  
+    const tier2UpperLimit = 36000; // Tier 2 limit  
+    const tierRate = 0.06; // 6% for both tiers  
+    let nssf = 0;  
+
+    if (grossSalary <= tier1Limit) {  
+        nssf = grossSalary * tierRate; // Tier I contributions  
+    } 
+    else if (grossSalary <= tier2UpperLimit) {  
+        nssf = (tier1Limit * tierRate) + ((grossSalary - tier1Limit) * tierRate); // Tier I and II contributions  
+    } 
+    else {  
+        nssf = (tier1Limit * tierRate) + ((tier2UpperLimit - tier1Limit) * tierRate) + ((grossSalary - tier2UpperLimit) * tierRate);  
+    }  
+
+    return nssf;  
+}  
+
+// Function to calculate Housing Levy  
+function calculateHousingLevy(grossSalary) {  
+    return grossSalary * 0.015; // 1.5% housing levy  
+}  
+
+//  To calculate total deductions and take-home salary using main function  
+function calculateSalaryBreakdown(grossSalary) {  
+    const paye = calculatePAYE(grossSalary);  
+    const nhif = calculateNHIF(grossSalary);  
+    const nssf = calculateNSSF(grossSalary);  
+    const housingLevy = calculateHousingLevy(grossSalary);  
+
+    const totalDeductions = paye + nhif + nssf + housingLevy;  
+    const takeHomeSalary = grossSalary - totalDeductions;  
+
+    console.log(Gross Salary: Ksh ${grossSalary});  
+    console.log(PAYE Tax: Ksh ${paye});  
+    console.log(NHIF Contribution: Ksh ${nhif});  
+    console.log(NSSF Contribution: Ksh ${nssf});  
+    console.log(Housing Levy: Ksh ${housingLevy});  
+    console.log(Total Deductions: Ksh ${totalDeductions});  
+    console.log(Take-Home Salary: Ksh ${takeHomeSalary});  
+}  
+
+// Example Usage  
+const grossSalary = 70000; // Change this to any salary you want to calculate  
+calculateSalaryBreakdown(grossSalary);

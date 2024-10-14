@@ -1,22 +1,20 @@
-let grade =100
-if (grade>=0 && grade<=40) 
-console.log("your grade is E")
+function getGrade(marks) {  
+    if (marks > 79 && marks <= 100) {  
+        return 'A';  
+    } else if (marks >= 60 && marks <= 79) {  
+        return 'B';  
+    } else if (marks >= 49 && marks <= 59) {  
+        return 'C';  
+    } else if (marks >= 40 && marks <= 49) {  
+        return 'D';  
+    } else if (marks < 40 && marks >= 0) {  
+        return 'E';  
+    } else {  
+        return 'Invalid marks';  
+    }  
+}  
 
-else if (grade>=41 && grade<=49) {
-    console.log("your grade is D")
-}
-else if (grade>=50 && grade<=59) {
-    console.log("your grade is C")
-}
-else if (grade>=60 && grade<=69){
-    console.log("your grade is B")
-}
-else if(grade>=70 && grade<=79){
-    console.log("your grade is A")
-}
-else {
-    console.log("invalid input")
-}
-
-
-
+ 
+let score= 79; 
+let grade = getGrade(score);  
+console.log(grade)
