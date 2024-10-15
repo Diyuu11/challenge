@@ -1,20 +1,29 @@
-# challenge 
-The app is my code challenge, 29/09/2024
-*By hamdi abdi
-Description
-this  is my code challenge created using HTML,JAVASCRIPT AND FRONT AWESOME. it showcast my skills and interest in web development.
+# Portfolio
+#### This is my code challenge, 15/10/2024
+#### **By Hamdi Abdi**
+## Description
+The application includes a  landing page showing what i do, my education background, some of my projects and their links to my github  and my contact information.
 
-About
-This  demonstrates my skills in web design and front-end development. It features clean and incorporates icons from Font Awesome for a modern look.
+## Setup/Installation Instruction
+* Download a zip in the code button to the desired folder
+* Extract the files
+* Open the extracted folder with VSCode
+* Go live or open the index.html file with chrome
+* And you are all done
 
-Features
-Use of Font Awesome for icons
-Technologies
-HTML
-JAVASCRIPT
-Font Awesome
-Installation
-Clone the repository:
-bash git clone [https://github.com/Diyuu11/code-challenge]
-contact
-feel free to reach out via [diagodu198@gmail.com]
+## Live server
+the project is not deployed 
+
+## Known Bugs
+The application works perfectly well, no bugs.
+
+## Technologies Used
+HTML, CSS , javascript, GIT
+
+## Support and contact details
+email :: Hamdi.aden2424@gmail.com
+
+### License
+*LIcenced under the [MT-licence](https://github.com/Diyuu11/challenge)*
+
+Copyright (c) 2024 **Hamdi Aden**
