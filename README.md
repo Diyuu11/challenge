@@ -1,8 +1,8 @@
-# Portfolio
+# code challenge
 #### This is my code challenge, 15/10/2024
 #### **By Hamdi Abdi**
 ## Description
-The application includes a  landing page showing what i do, my education background, some of my projects and their links to my github  and my contact information.
+this is my first code challenge
 
 ## Setup/Installation Instruction
 * Download a zip in the code button to the desired folder
