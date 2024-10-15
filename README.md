@@ -1,8 +1,8 @@
-# code challenge
+# code challenges
 #### This is my code challenge, 15/10/2024
 #### **By Hamdi Abdi**
 ## Description
-this is my first code challenge
+this is my first code challenge it contains speed detector,net salary calculator and well designed html structure
 
 ## Setup/Installation Instruction
 * Download a zip in the code button to the desired folder
@@ -18,7 +18,7 @@ the project is not deployed
 The application works perfectly well, no bugs.
 
 ## Technologies Used
-HTML, CSS , javascript, GIT
+HTML, CSS , javascript, 
 
 ## Support and contact details
 email :: Hamdi.aden2424@gmail.com
